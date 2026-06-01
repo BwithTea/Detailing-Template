@@ -13,6 +13,7 @@
   <link rel="stylesheet" href="css/before-after.css" />
   <link rel="stylesheet" href="css/testimonials.css" />
   <link rel="stylesheet" href="css/pricing.css" />
+  <link rel="stylesheet" href="css/booking.css" />
 </head>
 <body>
 
@@ -467,6 +468,188 @@
   </div>
 </section>
 
+<!-- ========================
+  BOOKING MODULE
+========================= -->
+<section class="booking" id="booking">
+  <div class="container">
+
+    <div class="booking__inner">
+
+      <!-- Left side — info -->
+      <div class="booking__info">
+        <p class="section-label">Get Started</p>
+        <h2 class="display-md booking__title">
+          Book Your <span style="color: var(--color-gold);">Detail.</span>
+        </h2>
+        <p class="body-lg booking__desc">
+          Fill out the form and we'll confirm your appointment 
+          within 2 hours. Same-day bookings available.
+        </p>
+
+        <div class="booking__trust-list">
+          <div class="booking__trust-item">
+            <span class="booking__trust-icon">✓</span>
+            <span>Free quotes — no obligation</span>
+          </div>
+          <div class="booking__trust-item">
+            <span class="booking__trust-icon">✓</span>
+            <span>Confirmation within 2 hours</span>
+          </div>
+          <div class="booking__trust-item">
+            <span class="booking__trust-icon">✓</span>
+            <span>100% satisfaction guaranteed</span>
+          </div>
+          <div class="booking__trust-item">
+            <span class="booking__trust-icon">✓</span>
+            <span>Mobile detailing available</span>
+          </div>
+        </div>
+
+        <div class="booking__contact">
+          <a href="tel:+15550000000" class="booking__contact-item">
+            <span class="booking__contact-icon">📞</span>
+            <div>
+              <span class="booking__contact-label">Call or Text</span>
+              <span class="booking__contact-value">(555) 000-0000</span>
+            </div>
+          </a>
+          <a href="mailto:hello@luxedetail.com" class="booking__contact-item">
+            <span class="booking__contact-icon">✉️</span>
+            <div>
+              <span class="booking__contact-label">Email Us</span>
+              <span class="booking__contact-value">hello@luxedetail.com</span>
+            </div>
+          </a>
+        </div>
+      </div>
+
+      <!-- Right side — form -->
+      <!-- 
+        ACTION attribute points to Formspree.
+        Replace YOUR_FORM_ID with the ID from formspree.io
+        Formspree forwards submissions to client's email.
+        Free plan allows 50 submissions/month.
+      -->
+      <form 
+        class="booking__form" 
+        action="https://formspree.io/f/YOUR_FORM_ID" 
+        method="POST"
+        id="bookingForm"
+      >
+
+        <div class="booking__form-row">
+          <div class="booking__field">
+            <label class="booking__label" for="firstName">First Name</label>
+            <input 
+              class="booking__input" 
+              type="text" 
+              id="firstName"
+              name="firstName"
+              placeholder="Marcus"
+              required
+            >
+          </div>
+          <div class="booking__field">
+            <label class="booking__label" for="lastName">Last Name</label>
+            <input 
+              class="booking__input" 
+              type="text" 
+              id="lastName"
+              name="lastName"
+              placeholder="Johnson"
+              required
+            >
+          </div>
+        </div>
+
+        <div class="booking__form-row">
+          <div class="booking__field">
+            <label class="booking__label" for="phone">Phone Number</label>
+            <input 
+              class="booking__input" 
+              type="tel" 
+              id="phone"
+              name="phone"
+              placeholder="(555) 000-0000"
+              required
+            >
+          </div>
+          <div class="booking__field">
+            <label class="booking__label" for="email">Email Address</label>
+            <input 
+              class="booking__input" 
+              type="email" 
+              id="email"
+              name="email"
+              placeholder="marcus@email.com"
+              required
+            >
+          </div>
+        </div>
+
+        <div class="booking__field">
+          <label class="booking__label" for="service">Service Interested In</label>
+          <select class="booking__input booking__select" id="service" name="service" required>
+            <option value="" disabled selected>Select a service...</option>
+            <option value="express">Express Detail — from $89</option>
+            <option value="exterior">Exterior Detail — from $149</option>
+            <option value="interior">Interior Detail — from $179</option>
+            <option value="full">Full Detail — from $299</option>
+            <option value="paint-correction">Paint Correction — from $499</option>
+            <option value="ceramic">Ceramic Coating — from $799</option>
+            <option value="headlight">Headlight Restoration — from $79</option>
+            <option value="unsure">Not sure — need recommendation</option>
+          </select>
+        </div>
+
+        <div class="booking__form-row">
+          <div class="booking__field">
+            <label class="booking__label" for="vehicle">Vehicle (Year, Make, Model)</label>
+            <input 
+              class="booking__input" 
+              type="text" 
+              id="vehicle"
+              name="vehicle"
+              placeholder="2021 BMW M3"
+            >
+          </div>
+          <div class="booking__field">
+            <label class="booking__label" for="date">Preferred Date</label>
+            <input 
+              class="booking__input" 
+              type="date" 
+              id="date"
+              name="date"
+            >
+          </div>
+        </div>
+
+        <div class="booking__field">
+          <label class="booking__label" for="message">Additional Notes (optional)</label>
+          <textarea 
+            class="booking__input booking__textarea" 
+            id="message"
+            name="message"
+            placeholder="Any specific concerns or requests? Let us know..."
+            rows="4"
+          ></textarea>
+        </div>
+
+        <button type="submit" class="btn btn-primary btn-lg booking__submit">
+          Request My Appointment
+        </button>
+
+        <p class="booking__form-note">
+          Prefer to talk? Call us directly at 
+          <a href="tel:+15550000000" style="color: var(--color-gold);">(555) 000-0000</a>
+        </p>
+
+      </form>
+
+    </div>
+  </div>
+</section>
   <!-- JS loads last so the DOM is ready when it runs -->
   <script src="js/main.js"></script>
   <script src="js/before-after.js"></script>

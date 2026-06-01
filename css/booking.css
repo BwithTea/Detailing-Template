@@ -1,0 +1,209 @@
+/* ============================================
+   MODULE: Booking Form
+   
+   Two column layout — info on left, form right.
+   The form fields use a consistent dark input
+   style that matches the overall luxury aesthetic.
+   Gold focus ring on inputs ties back to brand.
+============================================ */
+
+.booking {
+  background-color: var(--color-surface);
+  padding-top: var(--section-pad);
+  padding-bottom: var(--section-pad);
+  border-top: 1px solid var(--color-border);
+}
+
+/* Two column layout */
+.booking__inner {
+  display: grid;
+  grid-template-columns: 1fr 1.4fr;
+  gap: var(--space-16);
+  align-items: start;
+}
+
+/* --- LEFT SIDE --- */
+.booking__title {
+  margin: var(--space-3) 0 var(--space-6);
+}
+
+.booking__desc {
+  margin-bottom: var(--space-8);
+}
+
+/* Trust checklist */
+.booking__trust-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  margin-bottom: var(--space-8);
+}
+
+.booking__trust-item {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  font-size: var(--text-sm);
+  color: var(--color-text-secondary);
+}
+
+.booking__trust-icon {
+  color: var(--color-gold);
+  font-weight: var(--weight-bold);
+  flex-shrink: 0;
+}
+
+/* Contact links */
+.booking__contact {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.booking__contact-item {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  padding: var(--space-4);
+  background-color: var(--color-surface-2);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  transition: border-color var(--ease-fast);
+}
+
+.booking__contact-item:hover {
+  border-color: var(--color-gold);
+}
+
+.booking__contact-icon {
+  font-size: var(--text-xl);
+  flex-shrink: 0;
+}
+
+.booking__contact-label {
+  display: block;
+  font-size: var(--text-xs);
+  color: var(--color-text-muted);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-wide);
+  margin-bottom: 2px;
+}
+
+.booking__contact-value {
+  display: block;
+  font-size: var(--text-base);
+  font-weight: var(--weight-bold);
+  color: var(--color-text-primary);
+}
+
+/* --- RIGHT SIDE - FORM --- */
+.booking__form {
+  background-color: var(--color-surface-2);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-xl);
+  padding: var(--space-10);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+}
+
+/* Two fields side by side */
+.booking__form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-4);
+}
+
+.booking__field {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.booking__label {
+  font-size: var(--text-xs);
+  font-weight: var(--weight-bold);
+  color: var(--color-text-secondary);
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+}
+
+/* All inputs, selects, textareas share this style */
+.booking__input {
+  background-color: var(--color-bg);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: var(--space-4);
+  color: var(--color-text-primary);
+  font-size: var(--text-base);
+  font-family: var(--font-body);
+  transition: border-color var(--ease-fast),
+              box-shadow var(--ease-fast);
+  width: 100%;
+}
+
+/* Gold ring appears when field is focused */
+.booking__input:focus {
+  outline: none;
+  border-color: var(--color-gold);
+  box-shadow: 0 0 0 3px var(--color-gold-glow);
+}
+
+.booking__input::placeholder {
+  color: var(--color-text-muted);
+}
+
+/* Fix select arrow color on dark bg */
+.booking__select {
+  cursor: pointer;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23c9a84c' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right var(--space-4) center;
+  padding-right: var(--space-10);
+}
+
+/* Select option styling */
+.booking__select option {
+  background-color: var(--color-surface-2);
+  color: var(--color-text-primary);
+}
+
+.booking__textarea {
+  resize: vertical;
+  min-height: 120px;
+}
+
+/* Date input fix for dark theme */
+.booking__input[type="date"] {
+  color-scheme: dark;
+}
+
+.booking__submit {
+  width: 100%;
+  margin-top: var(--space-2);
+}
+
+.booking__form-note {
+  font-size: var(--text-xs);
+  color: var(--color-text-muted);
+  text-align: center;
+  line-height: var(--leading-normal);
+}
+
+/* Mobile */
+@media (max-width: 968px) {
+  .booking__inner {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 640px) {
+  .booking__form-row {
+    grid-template-columns: 1fr;
+  }
+
+  .booking__form {
+    padding: var(--space-6);
+  }
+}
