@@ -622,121 +622,88 @@
         Free plan allows 50 submissions/month.
       -->
       <form 
-        class="booking__form" 
-        action="https://formspree.io/f/YOUR_FORM_ID" 
+        class="booking__form"
+        name="booking"
         method="POST"
+        data-netlify="true"
+        netlify-honeypot="bot-field"
         id="bookingForm"
       >
 
-        <div class="booking__form-row">
-          <div class="booking__field">
-            <label class="booking__label" for="firstName">First Name</label>
-            <input 
-              class="booking__input" 
-              type="text" 
-              id="firstName"
-              name="firstName"
-              placeholder="Marcus"
-              required
-            >
-          </div>
-          <div class="booking__field">
-            <label class="booking__label" for="lastName">Last Name</label>
-            <input 
-              class="booking__input" 
-              type="text" 
-              id="lastName"
-              name="lastName"
-              placeholder="Johnson"
-              required
-            >
-          </div>
-        </div>
+  <!-- Required hidden fields for Netlify Forms -->
+  <input type="hidden" name="form-name" value="booking" />
+  <input type="hidden" name="bot-field" />
 
-        <div class="booking__form-row">
-          <div class="booking__field">
-            <label class="booking__label" for="phone">Phone Number</label>
-            <input 
-              class="booking__input" 
-              type="tel" 
-              id="phone"
-              name="phone"
-              placeholder="(555) 000-0000"
-              required
-            >
-          </div>
-          <div class="booking__field">
-            <label class="booking__label" for="email">Email Address</label>
-            <input 
-              class="booking__input" 
-              type="email" 
-              id="email"
-              name="email"
-              placeholder="marcus@email.com"
-              required
-            >
-          </div>
-        </div>
+  <div class="booking__form-row">
+    <div class="booking__field">
+      <label class="booking__label" for="firstName">First Name</label>
+      <input class="booking__input" type="text" id="firstName"
+        name="firstName" placeholder="Marcus" required>
+    </div>
+    <div class="booking__field">
+      <label class="booking__label" for="lastName">Last Name</label>
+      <input class="booking__input" type="text" id="lastName"
+        name="lastName" placeholder="Johnson" required>
+    </div>
+  </div>
 
-        <div class="booking__field">
-          <label class="booking__label" for="service">Service Interested In</label>
-          <select class="booking__input booking__select" id="service" name="service" required>
-            <option value="" disabled selected>Select a service...</option>
-            <option value="express">Express Detail — from $89</option>
-            <option value="exterior">Exterior Detail — from $149</option>
-            <option value="interior">Interior Detail — from $179</option>
-            <option value="full">Full Detail — from $299</option>
-            <option value="paint-correction">Paint Correction — from $499</option>
-            <option value="ceramic">Ceramic Coating — from $799</option>
-            <option value="headlight">Headlight Restoration — from $79</option>
-            <option value="unsure">Not sure — need recommendation</option>
-          </select>
-        </div>
+  <div class="booking__form-row">
+    <div class="booking__field">
+      <label class="booking__label" for="phone">Phone Number</label>
+      <input class="booking__input" type="tel" id="phone"
+        name="phone" placeholder="(555) 000-0000" required>
+    </div>
+    <div class="booking__field">
+      <label class="booking__label" for="email">Email Address</label>
+      <input class="booking__input" type="email" id="email"
+        name="email" placeholder="marcus@email.com" required>
+    </div>
+  </div>
 
-        <div class="booking__form-row">
-          <div class="booking__field">
-            <label class="booking__label" for="vehicle">Vehicle (Year, Make, Model)</label>
-            <input 
-              class="booking__input" 
-              type="text" 
-              id="vehicle"
-              name="vehicle"
-              placeholder="2021 BMW M3"
-            >
-          </div>
-          <div class="booking__field">
-            <label class="booking__label" for="date">Preferred Date</label>
-            <input 
-              class="booking__input" 
-              type="date" 
-              id="date"
-              name="date"
-            >
-          </div>
-        </div>
+  <div class="booking__field">
+    <label class="booking__label" for="service">Service Interested In</label>
+    <select class="booking__input booking__select" id="service" name="service" required>
+      <option value="" disabled selected>Select a service...</option>
+      <option value="express">Express Detail — from $89</option>
+      <option value="exterior">Exterior Detail — from $149</option>
+      <option value="interior">Interior Detail — from $179</option>
+      <option value="full">Full Detail — from $299</option>
+      <option value="paint-correction">Paint Correction — from $499</option>
+      <option value="ceramic">Ceramic Coating — from $799</option>
+      <option value="headlight">Headlight Restoration — from $79</option>
+      <option value="unsure">Not sure — need recommendation</option>
+    </select>
+  </div>
 
-        <div class="booking__field">
-          <label class="booking__label" for="message">Additional Notes (optional)</label>
-          <textarea 
-            class="booking__input booking__textarea" 
-            id="message"
-            name="message"
-            placeholder="Any specific concerns or requests? Let us know..."
-            rows="4"
-          ></textarea>
-        </div>
+  <div class="booking__form-row">
+    <div class="booking__field">
+      <label class="booking__label" for="vehicle">Vehicle (Year, Make, Model)</label>
+      <input class="booking__input" type="text" id="vehicle"
+        name="vehicle" placeholder="2021 BMW M3">
+    </div>
+    <div class="booking__field">
+      <label class="booking__label" for="date">Preferred Date</label>
+      <input class="booking__input" type="date" id="date" name="date">
+    </div>
+  </div>
 
-        <button type="submit" class="btn btn-primary btn-lg booking__submit">
-          Request My Appointment
-        </button>
+  <div class="booking__field">
+    <label class="booking__label" for="message">Additional Notes (optional)</label>
+    <textarea class="booking__input booking__textarea" id="message"
+      name="message" placeholder="Any specific concerns or requests? Let us know..."
+      rows="4"></textarea>
+  </div>
 
-        <p class="booking__form-note">
-          Prefer to talk? Call us directly at 
-          <a href="tel:+15550000000" style="color: var(--color-gold);">(555) 000-0000</a>
-        </p>
+  <button type="submit" class="btn btn-primary btn-lg booking__submit">
+    Request My Appointment
+  </button>
 
-      </form>
+  <p class="booking__form-note">
+    Prefer to talk? Call us directly at 
+    <a href="tel:+15550000000" style="color: var(--color-gold);">(555) 000-0000</a>
+  </p>
 
+    </form>
     </div>
   </div>
 </section>
