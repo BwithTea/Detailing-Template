@@ -334,3 +334,7 @@ input, textarea, select {
   padding: var(--space-5) var(--space-10);
   font-size: var(--text-base);
 }
+
+html {
+  scroll-padding-top: 80px;
+}

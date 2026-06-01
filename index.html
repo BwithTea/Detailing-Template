@@ -104,6 +104,7 @@
   <link rel="stylesheet" href="css/booking.css" />
   <link rel="stylesheet" href="css/footer.css" />
   <link rel="stylesheet" href="css/mobile-cta.css" />
+  <link rel="stylesheet" href="css/gallery.css" />
 </head>
 <body>
 
@@ -122,7 +123,7 @@
         <a href="#gallery"      class="nav__link">Gallery</a>
         <a href="#pricing"      class="nav__link">Pricing</a>
         <a href="#testimonials" class="nav__link">Reviews</a>
-        <a href="#contact"      class="nav__link">Contact</a>
+        <a href="#booking"      class="nav__link">Contact</a>
       </nav>
 
       <div class="nav__actions">
@@ -364,6 +365,111 @@
       </div>
 
     </div>
+  </div>
+</section>
+
+<!-- ========================
+  GALLERY MODULE
+========================= -->
+<section class="gallery" id="gallery">
+  <div class="container">
+
+    <div class="gallery__header">
+      <p class="section-label">Our Work</p>
+      <h2 class="display-md gallery__title">
+        Results That <span style="color: var(--color-gold);">Speak.</span>
+      </h2>
+      <p class="body-lg gallery__subtitle">
+        Every photo is a real car we've worked on.
+        No filters. No stock photos. Just results.
+      </p>
+    </div>
+
+    <div class="gallery__grid" id="galleryGrid">
+
+      <div class="gallery__item" onclick="openLightbox(0)">
+        <img src="https://images.unsplash.com/photo-1552519507-da3b142c6e3d?w=800&q=80" alt="Ceramic coating on Corvette" loading="lazy">
+        <div class="gallery__overlay">
+          <span class="gallery__label">Ceramic Coating</span>
+        </div>
+      </div>
+
+      <div class="gallery__item" onclick="openLightbox(1)">
+        <img src="https://images.unsplash.com/photo-1614162692292-7ac56d7f7f1e?w=800&q=80" alt="Full detail on Porsche" loading="lazy">
+        <div class="gallery__overlay">
+          <span class="gallery__label">Full Detail</span>
+        </div>
+      </div>
+
+      <div class="gallery__item" onclick="openLightbox(2)">
+        <img src="https://images.unsplash.com/photo-1542362567-b07e54358753?w=800&q=80" alt="Paint correction on BMW" loading="lazy">
+        <div class="gallery__overlay">
+          <span class="gallery__label">Paint Correction</span>
+        </div>
+      </div>
+
+      <div class="gallery__item" onclick="openLightbox(3)">
+        <img src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=800&q=80" alt="Exterior detail on sports car" loading="lazy">
+        <div class="gallery__overlay">
+          <span class="gallery__label">Exterior Detail</span>
+        </div>
+      </div>
+
+      <div class="gallery__item" onclick="openLightbox(4)">
+        <img src="https://images.unsplash.com/photo-1580274455191-1c62238fa333?w=800&q=80" alt="Interior detail" loading="lazy">
+        <div class="gallery__overlay">
+          <span class="gallery__label">Interior Detail</span>
+        </div>
+      </div>
+
+      <div class="gallery__item" onclick="openLightbox(5)">
+        <img src="https://images.unsplash.com/photo-1494976388531-d1058494cdd8?w=800&q=80" alt="Headlight restoration" loading="lazy">
+        <div class="gallery__overlay">
+          <span class="gallery__label">Headlight Restore</span>
+        </div>
+      </div>
+
+      <div class="gallery__item" onclick="openLightbox(6)">
+        <img src="https://images.unsplash.com/photo-1555215695-3004980ad54e?w=800&q=80" alt="Ceramic coating BMW" loading="lazy">
+        <div class="gallery__overlay">
+          <span class="gallery__label">Ceramic Coating</span>
+        </div>
+      </div>
+
+      <div class="gallery__item" onclick="openLightbox(7)">
+        <img src="https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?w=800&q=80" alt="Full detail Mercedes" loading="lazy">
+        <div class="gallery__overlay">
+          <span class="gallery__label">Full Detail</span>
+        </div>
+      </div>
+
+      <div class="gallery__item" onclick="openLightbox(8)">
+        <img src="https://images.unsplash.com/photo-1606664515524-ed2f786a0bd6?w=800&q=80" alt="Paint correction Ferrari" loading="lazy">
+        <div class="gallery__overlay">
+          <span class="gallery__label">Paint Correction</span>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Lightbox -->
+    <div class="gallery__lightbox" id="lightbox" onclick="closeLightbox()">
+      <button class="gallery__lightbox-close" onclick="closeLightbox()">✕</button>
+      <button class="gallery__lightbox-prev" onclick="prevPhoto(event)">‹</button>
+      <button class="gallery__lightbox-next" onclick="nextPhoto(event)">›</button>
+      <div class="gallery__lightbox-content" onclick="event.stopPropagation()">
+        <img id="lightboxImg" src="" alt="">
+        <p id="lightboxLabel" class="gallery__lightbox-label"></p>
+      </div>
+    </div>
+
+    <div class="gallery__footer">
+      <p class="body-md">Want to see more of our work?</p>
+      <a href="#" class="btn btn-outline">
+        Follow Us on Instagram
+      </a>
+    </div>
+
   </div>
 </section>
 
