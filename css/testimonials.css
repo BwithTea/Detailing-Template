@@ -1,0 +1,174 @@
+/* ============================================
+   MODULE: Testimonials
+   
+   Three cards in a row. The center card is
+   featured — slightly elevated with a gold
+   border to draw the eye to the strongest quote.
+   Google badge at the bottom adds third-party
+   credibility that self-hosted reviews can't.
+============================================ */
+
+.testimonials {
+  background-color: var(--color-surface);
+  padding-top: var(--section-pad);
+  padding-bottom: var(--section-pad);
+  border-top: 1px solid var(--color-border);
+}
+
+.testimonials__header {
+  text-align: center;
+  margin-bottom: var(--space-16);
+}
+
+.testimonials__title {
+  margin-top: var(--space-3);
+}
+
+/* Three column grid */
+.testimonials__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-6);
+  margin-bottom: var(--space-12);
+  align-items: start;
+}
+
+/* Base card */
+.testimonials__card {
+  background-color: var(--color-surface-2);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-8);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+  transition: transform var(--ease-normal),
+              border-color var(--ease-normal);
+}
+
+.testimonials__card:hover {
+  transform: translateY(-4px);
+  border-color: var(--color-border-light);
+}
+
+/* Featured center card */
+.testimonials__card--featured {
+  border-color: var(--color-gold);
+  background-color: var(--color-surface-2);
+  transform: translateY(-8px); /* already elevated */
+  box-shadow: var(--shadow-gold);
+}
+
+.testimonials__card--featured:hover {
+  transform: translateY(-12px);
+}
+
+/* Gold stars */
+.testimonials__stars {
+  color: var(--color-gold);
+  font-size: var(--text-lg);
+  letter-spacing: 2px;
+}
+
+/* The quote text */
+.testimonials__quote {
+  font-size: var(--text-base);
+  line-height: var(--leading-loose);
+  color: var(--color-text-secondary);
+  font-style: italic;
+  flex: 1;
+}
+
+/* Author row at the bottom */
+.testimonials__author {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  padding-top: var(--space-4);
+  border-top: 1px solid var(--color-border);
+}
+
+.testimonials__author-info {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+}
+
+.testimonials__author-name {
+  font-size: var(--text-sm);
+  font-weight: var(--weight-bold);
+  color: var(--color-text-primary);
+}
+
+.testimonials__author-vehicle {
+  font-size: var(--text-xs);
+  color: var(--color-gold);
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+}
+
+/* Google badge section */
+.testimonials__google {
+  display: flex;
+  justify-content: center;
+  margin-top: var(--space-8);
+}
+
+.testimonials__google-badge {
+  display: flex;
+  align-items: center;
+  gap: var(--space-6);
+  background-color: var(--color-surface-2);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-xl);
+  padding: var(--space-5) var(--space-8);
+}
+
+/* The G icon */
+.testimonials__google-icon {
+  width: 40px;
+  height: 40px;
+  background: linear-gradient(135deg, #4285F4, #34A853, #FBBC05, #EA4335);
+  border-radius: var(--radius-full);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: var(--text-lg);
+  font-weight: var(--weight-bold);
+  color: white;
+  flex-shrink: 0;
+}
+
+.testimonials__google-info {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+}
+
+.testimonials__google-stars {
+  color: #FBBC05;
+  font-size: var(--text-base);
+  letter-spacing: 2px;
+}
+
+.testimonials__google-text {
+  font-size: var(--text-sm);
+  color: var(--color-text-secondary);
+  font-weight: var(--weight-medium);
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  .testimonials__grid {
+    grid-template-columns: 1fr;
+  }
+
+  .testimonials__card--featured {
+    transform: translateY(0);
+  }
+
+  .testimonials__google-badge {
+    flex-direction: column;
+    text-align: center;
+  }
+}
