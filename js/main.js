@@ -92,3 +92,29 @@ document.addEventListener('keydown', e => {
   if (e.key === 'ArrowLeft') prevPhoto(e);
   if (e.key === 'ArrowRight') nextPhoto(e);
 });
+
+// ============================================
+//   FAQ ACCORDION
+// ============================================
+
+function initFAQ() {
+  const items = document.querySelectorAll('.faq__item');
+
+  items.forEach(item => {
+    const question = item.querySelector('.faq__question');
+
+    question.addEventListener('click', () => {
+      const isOpen = item.classList.contains('open');
+
+      // Close all items first
+      items.forEach(i => i.classList.remove('open'));
+
+      // If it wasn't open, open it
+      if (!isOpen) {
+        item.classList.add('open');
+      }
+    });
+  });
+}
+
+initFAQ();
