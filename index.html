@@ -858,5 +858,61 @@
   <script src="js/main.js"></script>
   <script src="js/before-after.js"></script>
 
+
+  <!-- ========================
+  AI CHAT WIDGET
+========================= -->
+<div class="chat-widget" id="chatWidget">
+
+  <!-- Chat window -->
+  <div class="chat-window" id="chatWindow">
+
+    <!-- Header -->
+    <div class="chat-header">
+      <div class="chat-header-avatar">✨</div>
+      <div class="chat-header-info">
+        <span class="chat-header-name">Luxe Detail Assistant</span>
+        <span class="chat-header-status">Online — replies instantly</span>
+      </div>
+      <button class="chat-close" id="chatClose">✕</button>
+    </div>
+
+    <!-- Messages -->
+    <div class="chat-messages" id="chatMessages">
+      <!-- Welcome message -->
+      <div class="chat-message chat-message--bot">
+        <div class="chat-bubble">
+          Hey there! 👋 I'm the Luxe Detail assistant. I can answer questions about our services, pricing, and availability. What can I help you with?
+        </div>
+      </div>
+    </div>
+
+    <!-- Quick suggestions -->
+    <div class="chat-suggestions" id="chatSuggestions"></div>
+
+    <!-- Input area -->
+    <div class="chat-input-area">
+      <textarea
+        class="chat-input"
+        id="chatInput"
+        placeholder="Ask me anything..."
+        rows="1"
+      ></textarea>
+      <button class="chat-send" id="chatSend">➤</button>
+    </div>
+
+  </div>
+
+  <!-- Toggle button -->
+  <button class="chat-toggle" id="chatToggle">
+    💬
+    <span class="chat-toggle-dot" id="chatDot"></span>
+  </button>
+
+</div>
+
+<!-- Chat scripts -->
+<link rel="stylesheet" href="css/chat.css" />
+<script src="js/chat.js"></script>
 </body>
 </html>
