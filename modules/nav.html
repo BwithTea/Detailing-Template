@@ -1,0 +1,40 @@
+<!-- ============================================
+   MODULE: Navigation
+   - Logo on the left
+   - Nav links in the center  
+   - CTA button on the right
+   - Becomes solid + sticky after scrolling 20px
+   - Hamburger menu collapses on mobile
+============================================ -->
+
+<header class="nav" id="nav">
+  <div class="container nav__inner">
+
+    <!-- LOGO: Replace "LUXE DETAIL" with client business name -->
+    <a href="#" class="nav__logo">
+      LUXE <span class="nav__logo-accent">DETAIL</span>
+    </a>
+
+    <!-- DESKTOP NAV LINKS -->
+    <nav class="nav__links" id="navLinks">
+      <a href="#services"     class="nav__link">Services</a>
+      <a href="#gallery"      class="nav__link">Gallery</a>
+      <a href="#pricing"      class="nav__link">Pricing</a>
+      <a href="#testimonials" class="nav__link">Reviews</a>
+      <a href="#contact"      class="nav__link">Contact</a>
+    </nav>
+
+    <!-- RIGHT SIDE: CTA + hamburger -->
+    <div class="nav__actions">
+      <a href="#booking" class="btn btn-primary">Book Now</a>
+
+      <!-- Hamburger - only visible on mobile -->
+      <button class="nav__hamburger" id="hamburger" aria-label="Toggle menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+
+  </div>
+</header>

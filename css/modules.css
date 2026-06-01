@@ -1,0 +1,356 @@
+
+
+/* ============================================
+   MODULE: Navigation
+============================================ */
+
+.nav {
+  /* Sits at top of page, full width */
+  position: fixed;           /* sticks to top as you scroll */
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: var(--z-nav);
+
+  /* Start transparent — becomes solid on scroll */
+  background-color: transparent;
+  border-bottom: 1px solid transparent;
+
+  /* Smooth transition when it becomes solid */
+  transition: background-color var(--ease-normal),
+              border-color var(--ease-normal),
+              backdrop-filter var(--ease-normal);
+
+  padding: var(--space-6) 0;
+}
+
+/* This class gets added by JS when user scrolls down */
+.nav.scrolled {
+  background-color: rgba(13, 13, 13, 0.95); /* near-black, slightly transparent */
+  border-bottom-color: var(--color-border);
+  backdrop-filter: blur(12px);              /* frosted glass effect */
+  padding: var(--space-4) 0;               /* slightly smaller when scrolled */
+}
+
+.nav__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-8);
+}
+
+/* --- LOGO --- */
+.nav__logo {
+  font-family: var(--font-display);
+  font-size: var(--text-2xl);
+  color: var(--color-text-primary);
+  letter-spacing: var(--tracking-wide);
+  flex-shrink: 0; /* never compress the logo */
+}
+
+.nav__logo-accent {
+  color: var(--color-gold); /* the second word is gold */
+}
+
+/* --- LINKS --- */
+.nav__links {
+  display: flex;
+  align-items: center;
+  gap: var(--space-8);
+}
+
+.nav__link {
+  font-size: var(--text-sm);
+  font-weight: var(--weight-medium);
+  color: var(--color-text-secondary);
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+  transition: color var(--ease-fast);
+  position: relative; /* needed for the underline effect */
+}
+
+/* Gold underline slides in on hover */
+.nav__link::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 0;               /* starts at zero width */
+  height: 1px;
+  background-color: var(--color-gold);
+  transition: width var(--ease-normal); /* animates to full width */
+}
+
+.nav__link:hover {
+  color: var(--color-text-primary);
+}
+
+.nav__link:hover::after {
+  width: 100%; /* slides gold line across on hover */
+}
+
+/* --- ACTIONS (right side) --- */
+.nav__actions {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  flex-shrink: 0;
+}
+
+/* --- HAMBURGER (mobile only) --- */
+.nav__hamburger {
+  display: none; /* hidden on desktop */
+  flex-direction: column;
+  gap: 5px;
+  padding: var(--space-2);
+}
+
+.nav__hamburger span {
+  display: block;
+  width: 22px;
+  height: 2px;
+  background-color: var(--color-text-primary);
+  border-radius: 2px;
+  transition: all var(--ease-normal);
+}
+
+/* Animate hamburger into an X when open */
+.nav__hamburger.open span:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+.nav__hamburger.open span:nth-child(2) {
+  opacity: 0;
+}
+.nav__hamburger.open span:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
+}
+
+/* --- MOBILE --- */
+@media (max-width: 768px) {
+
+  .nav__hamburger {
+    display: flex; /* show hamburger on mobile */
+  }
+
+  /* Hide desktop links, stack them vertically when open */
+  .nav__links {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0;
+    background-color: rgba(13, 13, 13, 0.98);
+    border-bottom: 1px solid var(--color-border);
+    padding: var(--space-4) var(--container-pad);
+  }
+
+  .nav__links.open {
+    display: flex; /* JS toggles this class */
+  }
+
+  .nav__link {
+    padding: var(--space-4) 0;
+    width: 100%;
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  /* Hide Book Now button on mobile nav — 
+     it's still in the sticky bottom bar we'll build later */
+  .nav__actions .btn {
+    display: none;
+  }
+}
+
+
+/* ============================================
+   MODULE: Hero
+   
+   The background image is defined here as a
+   CSS variable so it's easy to find and swap.
+   Just replace the URL below with the client's
+   own photo to customize for any business.
+============================================ */
+
+.hero {
+  /* Full viewport height — fills the entire screen */
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+
+  /* ⬇️ SWAP THIS URL to change the background photo */
+  background-image: url('https://images.unsplash.com/photo-1614162692292-7ac56d7f7f1e?w=1600&q=80');
+  background-size: cover;       /* image fills the whole area */
+  background-position: center;  /* image stays centered */
+  background-attachment: fixed; /* parallax effect on scroll */
+}
+
+/* The dark overlay — this is what makes text readable.
+   It's a separate div sitting on top of the image.
+   Adjust the last value (0.65) to make it lighter or darker. */
+.hero__overlay {
+  position: absolute;
+  inset: 0; /* shorthand for top/right/bottom/left: 0 */
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.3) 0%,    /* lighter at top */
+    rgba(0, 0, 0, 0.65) 50%,  /* darker in middle where text is */
+    rgba(0, 0, 0, 0.85) 100%  /* darkest at bottom */
+  );
+}
+
+/* Content sits above the overlay using z-index */
+.hero__content {
+  position: relative;
+  z-index: var(--z-base);
+  padding-top: 8rem;   /* clears the fixed nav */
+  padding-bottom: 4rem;
+  max-width: 800px;
+}
+
+.hero__label {
+  /* Inherits .section-label gold styling from foundation
+     but we add a little animation delay */
+  opacity: 0;
+  animation: fadeUp 0.6s ease forwards;
+  animation-delay: 0.2s;
+}
+
+.hero__headline {
+  font-family: var(--font-display);
+  font-size: clamp(3rem, 8vw, 6rem); /* scales fluidly with screen size */
+  line-height: var(--leading-tight);
+  letter-spacing: var(--tracking-tight);
+  color: var(--color-text-primary);
+  margin: var(--space-4) 0 var(--space-6);
+  opacity: 0;
+  animation: fadeUp 0.6s ease forwards;
+  animation-delay: 0.4s;
+}
+
+/* The gold accent word in the headline */
+.hero__headline-accent {
+  color: var(--color-gold);
+}
+
+.hero__sub {
+  font-size: var(--text-lg);
+  line-height: var(--leading-loose);
+  color: rgba(245, 245, 245, 0.85);
+  max-width: 560px;
+  margin-bottom: var(--space-8);
+  opacity: 0;
+  animation: fadeUp 0.6s ease forwards;
+  animation-delay: 0.6s;
+}
+
+.hero__actions {
+  display: flex;
+  gap: var(--space-4);
+  flex-wrap: wrap; /* buttons stack on very small screens */
+  margin-bottom: var(--space-8);
+  opacity: 0;
+  animation: fadeUp 0.6s ease forwards;
+  animation-delay: 0.8s;
+}
+
+/* Trust bar — the three quick credibility signals */
+.hero__trust {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  flex-wrap: wrap;
+  opacity: 0;
+  animation: fadeUp 0.6s ease forwards;
+  animation-delay: 1s;
+}
+
+.hero__trust-item {
+  font-size: var(--text-sm);
+  color: rgba(245, 245, 245, 0.7);
+  font-weight: var(--weight-medium);
+}
+
+.hero__trust-divider {
+  color: var(--color-gold);
+  opacity: 0.5;
+}
+
+/* Scroll indicator at the bottom of the hero */
+.hero__scroll-indicator {
+  position: absolute;
+  bottom: var(--space-8);
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-2);
+  z-index: var(--z-base);
+  opacity: 0;
+  animation: fadeUp 0.6s ease forwards;
+  animation-delay: 1.2s;
+}
+
+.hero__scroll-indicator span {
+  font-size: var(--text-xs);
+  letter-spacing: var(--tracking-wider);
+  text-transform: uppercase;
+  color: rgba(245, 245, 245, 0.5);
+}
+
+/* The animated arrow line */
+.hero__scroll-arrow {
+  width: 1px;
+  height: 40px;
+  background: linear-gradient(
+    to bottom,
+    transparent,
+    rgba(201, 168, 76, 0.6)
+  );
+  animation: scrollPulse 1.5s ease infinite;
+}
+
+/* ============================================
+   ANIMATIONS
+   fadeUp = elements slide up and fade in
+   scrollPulse = the scroll arrow pulses down
+============================================ */
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes scrollPulse {
+  0%, 100% { transform: scaleY(1);   opacity: 0.5; }
+  50%       { transform: scaleY(1.3); opacity: 1;   }
+}
+
+/* Mobile adjustments for the hero */
+@media (max-width: 768px) {
+  .hero {
+    background-attachment: scroll; /* fixed attachment causes issues on mobile */
+  }
+
+  .hero__content {
+    padding-top: 6rem;
+  }
+
+  .hero__trust {
+    gap: var(--space-2);
+  }
+
+  .hero__trust-divider {
+    display: none; /* cleaner without dividers on small screens */
+  }
+}

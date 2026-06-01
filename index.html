@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Luxe Detail — Premium Auto Detailing</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="foundation.css" />
+  <link rel="stylesheet" href="css/modules.css" />
+</head>
+<body>
+
+  <!-- ========================
+    NAV MODULE
+  ========================= -->
+  <header class="nav" id="nav">
+    <div class="container nav__inner">
+
+      <a href="#" class="nav__logo">
+        LUXE <span class="nav__logo-accent">DETAIL</span>
+      </a>
+
+      <nav class="nav__links" id="navLinks">
+        <a href="#services"     class="nav__link">Services</a>
+        <a href="#gallery"      class="nav__link">Gallery</a>
+        <a href="#pricing"      class="nav__link">Pricing</a>
+        <a href="#testimonials" class="nav__link">Reviews</a>
+        <a href="#contact"      class="nav__link">Contact</a>
+      </nav>
+
+      <div class="nav__actions">
+        <a href="#booking" class="btn btn-primary">Book Now</a>
+        <button class="nav__hamburger" id="hamburger" aria-label="Toggle menu">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+
+    </div>
+  </header>
+
+<!-- ========================
+    HERO MODULE
+  ========================= -->
+  <section class="hero" id="home">
+    <div class="hero__overlay"></div>
+    <div class="container hero__content">
+      <p class="section-label hero__label">Premium Auto Detailing</p>
+      <h1 class="hero__headline">
+        Your Car Deserves<br>
+        <span class="hero__headline-accent">The Best.</span>
+      </h1>
+      <p class="hero__sub">
+        Ceramic coatings, paint correction, and full details
+        that protect your investment and turn heads.
+      </p>
+      <div class="hero__actions">
+        <a href="#booking" class="btn btn-primary btn-lg">Book Your Detail</a>
+        <a href="#services" class="btn btn-outline btn-lg">See Our Services</a>
+      </div>
+      <div class="hero__trust">
+        <span class="hero__trust-item">⭐ 4.9 on Google</span>
+        <span class="hero__trust-divider">·</span>
+        <span class="hero__trust-item">500+ Vehicles Detailed</span>
+        <span class="hero__trust-divider">·</span>
+        <span class="hero__trust-item">Satisfaction Guaranteed</span>
+      </div>
+    </div>
+    <div class="hero__scroll-indicator">
+      <span>Scroll</span>
+      <div class="hero__scroll-arrow"></div>
+    </div>
+  </section>
+  <!-- JS loads last so the DOM is ready when it runs -->
+  <script src="js/main.js"></script>
+
+</body>
+</html>

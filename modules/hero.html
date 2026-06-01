@@ -1,0 +1,60 @@
+<!-- ============================================
+   MODULE: Hero
+   Full-viewport opening section.
+   Background image is set in CSS so clients
+   can swap it by changing one line.
+   
+   TO CUSTOMIZE FOR A CLIENT:
+   - Change the headline and tagline text
+   - In modules.css, find --hero-image and 
+     replace the URL with their photo
+============================================ -->
+
+<section class="hero" id="home">
+  <!-- Dark overlay sits between the image and the text
+       so white text stays readable over any photo -->
+  <div class="hero__overlay"></div>
+
+  <!-- All the text content lives in here -->
+  <div class="container hero__content">
+
+    <!-- The small gold label above the headline -->
+    <p class="section-label hero__label">Premium Auto Detailing</p>
+
+    <!-- Main headline — this is the biggest text on the page
+         Split into two lines for visual rhythm -->
+    <h1 class="hero__headline">
+      Your Car Deserves<br>
+      <span class="hero__headline-accent">The Best.</span>
+    </h1>
+
+    <!-- Supporting line — one sentence, specific and confident -->
+    <p class="hero__sub">
+      Ceramic coatings, paint correction, and full details
+      that protect your investment and turn heads.
+    </p>
+
+    <!-- Two CTAs — primary action and a softer secondary option -->
+    <div class="hero__actions">
+      <a href="#booking" class="btn btn-primary btn-lg">Book Your Detail</a>
+      <a href="#services" class="btn btn-outline btn-lg">See Our Services</a>
+    </div>
+
+    <!-- Trust line — quick social proof right in the hero -->
+    <div class="hero__trust">
+      <span class="hero__trust-item">⭐ 4.9 on Google</span>
+      <span class="hero__trust-divider">·</span>
+      <span class="hero__trust-item">500+ Vehicles Detailed</span>
+      <span class="hero__trust-divider">·</span>
+      <span class="hero__trust-item">Satisfaction Guaranteed</span>
+    </div>
+
+  </div>
+
+  <!-- Scroll indicator — bounces to invite scrolling -->
+  <div class="hero__scroll-indicator">
+    <span>Scroll</span>
+    <div class="hero__scroll-arrow"></div>
+  </div>
+
+</section>
