@@ -10,6 +10,7 @@
   <link rel="stylesheet" href="foundation.css" />
   <link rel="stylesheet" href="css/modules.css" />
   <link rel="stylesheet" href="css/services.css" />
+  <link rel="stylesheet" href="css/before-after.css" />
 </head>
 <body>
 
@@ -217,8 +218,65 @@
 
   </div>
 </section>
+
+<!-- ========================
+  BEFORE / AFTER MODULE
+========================= -->
+<section class="before-after" id="gallery">
+  <div class="container">
+
+    <div class="before-after__header">
+      <p class="section-label">The Results Speak</p>
+      <h2 class="display-md before-after__title">
+        See The <span style="color: var(--color-gold);">Difference.</span>
+      </h2>
+      <p class="body-lg">
+        Drag the handle to reveal the transformation.
+        Real cars. Real results. No filters.
+      </p>
+    </div>
+
+    <div class="before-after__grid">
+
+      <!-- Slider 1 — Full Detail -->
+      <div>
+        <div class="ba-slider">
+          <img class="ba-before" src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=900&q=80" alt="Before detail">
+          <img class="ba-after"  src="https://images.unsplash.com/photo-1614162692292-7ac56d7f7f1e?w=900&q=80" alt="After detail">
+          <div class="ba-handle">
+            <div class="ba-handle-btn">
+              <span class="ba-handle-arrows">◀ ▶</span>
+            </div>
+          </div>
+          <span class="ba-label ba-label--before">Before</span>
+          <span class="ba-label ba-label--after">After</span>
+        </div>
+        <p class="ba-hint">← Drag to compare →</p>
+      </div>
+
+      <!-- Slider 2 — Paint Correction -->
+      <div>
+        <div class="ba-slider">
+          <img class="ba-before" src="https://images.unsplash.com/photo-1552519507-da3b142c6e3d?w=900&q=80" alt="Before paint correction">
+          <img class="ba-after"  src="https://images.unsplash.com/photo-1542362567-b07e54358753?w=900&q=80" alt="After paint correction">
+          <div class="ba-handle">
+            <div class="ba-handle-btn">
+              <span class="ba-handle-arrows">◀ ▶</span>
+            </div>
+          </div>
+          <span class="ba-label ba-label--before">Before</span>
+          <span class="ba-label ba-label--after">After</span>
+        </div>
+        <p class="ba-hint">← Drag to compare →</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
   <!-- JS loads last so the DOM is ready when it runs -->
   <script src="js/main.js"></script>
-
+  <script src="js/before-after.js"></script>
+  
 </body>
 </html>
