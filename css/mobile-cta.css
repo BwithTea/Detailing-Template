@@ -1,0 +1,74 @@
+/* ============================================
+   MODULE: Sticky Mobile CTA Bar
+   
+   Only renders on mobile (max-width: 768px).
+   Fixed to bottom of screen at all times.
+   Two buttons — call and book.
+   Padding added to body so content doesn't
+   hide behind the bar when scrolled to bottom.
+============================================ */
+
+/* Hidden on desktop — only shows on mobile */
+.mobile-cta {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .mobile-cta {
+    display: flex;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: var(--z-nav);
+    background-color: var(--color-surface);
+    border-top: 1px solid var(--color-border);
+    padding: var(--space-3) var(--space-4);
+    gap: var(--space-3);
+    /* Safe area for phones with home bar */
+    padding-bottom: calc(var(--space-3) + env(safe-area-inset-bottom));
+  }
+
+  .mobile-cta__btn {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-2);
+    padding: var(--space-4);
+    border-radius: var(--radius-md);
+    font-size: var(--text-sm);
+    font-weight: var(--weight-bold);
+    letter-spacing: var(--tracking-wide);
+    text-transform: uppercase;
+    transition: all var(--ease-fast);
+  }
+
+  /* Call button — outline style */
+  .mobile-cta__btn--call {
+    background-color: transparent;
+    color: var(--color-gold);
+    border: 1px solid var(--color-gold);
+  }
+
+  .mobile-cta__btn--call:active {
+    background-color: var(--color-gold-glow);
+  }
+
+  /* Book button — filled gold */
+  .mobile-cta__btn--book {
+    background-color: var(--color-gold);
+    color: var(--color-text-inverse);
+    border: 1px solid var(--color-gold);
+  }
+
+  .mobile-cta__btn--book:active {
+    background-color: var(--color-gold-dark);
+  }
+
+  /* Add padding to bottom of page so footer
+     content doesn't hide behind the bar */
+  body {
+    padding-bottom: 80px;
+  }
+}
