@@ -1,0 +1,213 @@
+/* ============================================
+   MODULE: Pricing Table
+   
+   Three tiers side by side.
+   The featured middle card is taller, has a
+   gold border, and the primary CTA button.
+   The outer cards use the outline button.
+   This visual hierarchy guides visitors toward
+   the middle option — highest margin for client.
+============================================ */
+
+.pricing {
+  background-color: var(--color-bg);
+  padding-top: var(--section-pad);
+  padding-bottom: var(--section-pad);
+}
+
+.pricing__header {
+  text-align: center;
+  max-width: 640px;
+  margin: 0 auto var(--space-16);
+}
+
+.pricing__title {
+  margin: var(--space-3) 0 var(--space-6);
+}
+
+/* Three column grid — middle card is wider on desktop */
+.pricing__grid {
+  display: grid;
+  grid-template-columns: 1fr 1.1fr 1fr;
+  gap: var(--space-6);
+  align-items: start;
+  max-width: 1000px;
+  margin: 0 auto var(--space-12);
+}
+
+/* Base card */
+.pricing__card {
+  position: relative;
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-xl);
+  padding: var(--space-8);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+  transition: transform var(--ease-normal),
+              border-color var(--ease-normal);
+}
+
+.pricing__card:hover {
+  transform: translateY(-4px);
+}
+
+/* Featured card */
+.pricing__card--featured {
+  border-color: var(--color-gold);
+  background-color: var(--color-surface-2);
+  transform: translateY(-12px);
+  box-shadow: var(--shadow-gold);
+}
+
+.pricing__card--featured:hover {
+  transform: translateY(-16px);
+}
+
+/* Most Popular badge */
+.pricing__badge {
+  position: absolute;
+  top: -14px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: var(--color-gold);
+  color: var(--color-text-inverse);
+  font-size: var(--text-xs);
+  font-weight: var(--weight-bold);
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+  padding: var(--space-2) var(--space-6);
+  border-radius: var(--radius-full);
+  white-space: nowrap;
+}
+
+.pricing__card-header {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+/* Tier name */
+.pricing__tier-name {
+  font-family: var(--font-display);
+  font-size: var(--text-2xl);
+  color: var(--color-text-primary);
+  letter-spacing: var(--tracking-wide);
+}
+
+/* Price display */
+.pricing__price {
+  display: flex;
+  align-items: baseline;
+  gap: var(--space-2);
+  flex-wrap: wrap;
+}
+
+.pricing__price-amount {
+  font-family: var(--font-mono);
+  font-size: var(--text-5xl);
+  color: var(--color-gold);
+  font-weight: var(--weight-bold);
+  line-height: 1;
+}
+
+.pricing__price-label {
+  font-size: var(--text-xs);
+  color: var(--color-text-muted);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-wide);
+}
+
+.pricing__tier-desc {
+  font-size: var(--text-sm);
+  color: var(--color-text-secondary);
+  line-height: var(--leading-normal);
+  padding-bottom: var(--space-4);
+  border-bottom: 1px solid var(--color-border);
+}
+
+/* Feature list */
+.pricing__features {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  flex: 1;
+  margin-bottom: var(--space-4);
+}
+
+.pricing__feature {
+  font-size: var(--text-sm);
+  line-height: var(--leading-normal);
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+/* Gold check for included features */
+.pricing__feature--yes {
+  color: var(--color-text-secondary);
+}
+
+.pricing__feature--yes::before {
+  content: '✓';
+  color: var(--color-gold);
+  font-weight: var(--weight-bold);
+  flex-shrink: 0;
+  width: 16px;
+}
+
+/* Muted X for excluded features */
+.pricing__feature--no {
+  color: var(--color-text-muted);
+}
+
+.pricing__feature--no::before {
+  content: '✕';
+  color: var(--color-text-muted);
+  flex-shrink: 0;
+  width: 16px;
+}
+
+/* Guarantee bar */
+.pricing__guarantee {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-4);
+  text-align: center;
+  padding: var(--space-6) var(--space-8);
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.pricing__guarantee-icon {
+  font-size: var(--text-2xl);
+  flex-shrink: 0;
+}
+
+.pricing__guarantee-text {
+  font-size: var(--text-sm);
+  color: var(--color-text-secondary);
+  line-height: var(--leading-normal);
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  .pricing__grid {
+    grid-template-columns: 1fr;
+    max-width: 400px;
+  }
+
+  .pricing__card--featured {
+    transform: translateY(0);
+    order: -1; /* featured card shows first on mobile */
+  }
+
+  .pricing__card--featured:hover {
+    transform: translateY(-4px);
+  }
+}
