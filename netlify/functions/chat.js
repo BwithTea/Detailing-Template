@@ -8,15 +8,25 @@ exports.handler = async function(event, context) {
 
   const { messages } = JSON.parse(event.body);
 
-  const today = new Date().toLocaleDateString('en-US', { 
-  weekday: 'long', 
-  year: 'numeric', 
-  month: 'long', 
-  day: 'numeric' 
-});
+  const today = new Date();
+  
+  const upcomingDates = [];
+  for (let i = 1; i <= 14; i++) {
+  const date = new Date(today);
+  date.setDate(today.getDate() + i);
+  upcomingDates.push(date.toLocaleDateString('en-US', { 
+    weekday: 'long', 
+    month: 'long', 
+    day: 'numeric',
+    timeZone: 'America/New_York'
+  }));
+}
 
-const systemPrompt = `You are an AI assistant for Luxe Detail, a premium auto detailing shop. You are friendly, professional, and knowledgeable. Your goal is to answer questions and guide visitors toward booking. 
-Today's date is ${today}. When a customer mentions a relative date like "next Friday", "this weekend", or "tomorrow" — calculate the actual calendar date based on today's date and confirm it with them before finalizing the booking.
+  const systemPrompt = `You are an AI assistant for Luxe Detail, a premium auto detailing shop. You are friendly, professional, and knowledgeable. Your goal is to answer questions and guide visitors toward booking. 
+Today is ${today.toLocaleDateString('en-US', { weekday: 'long', month: 'long', day: 'numeric', timeZone: 'America/New_York' })}.
+The next 14 days are: ${upcomingDates.join(', ')}. 
+When a customer mentions "this Friday", "next Friday", "tomorrow" etc — use this list to give them the exact date. "This Friday" means the nearest Friday. "Next Friday" means the Friday after that.
+confirm it with them before finalizing the booking.
 
 ABOUT THE BUSINESS:
 - Name: Luxe Detail
