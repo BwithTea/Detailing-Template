@@ -3,8 +3,13 @@
    Fixed to bottom right corner.
    Opens/closes on button click.
    Gold accent matches the site brand.
+   
+   KEY FIX: chat-window uses display:none when
+   closed so it has zero hit area and never
+   blocks hover events on page elements.
 ============================================ */
 
+/* ── WIDGET CONTAINER ─────────────────────── */
 .chat-widget {
   position: fixed;
   bottom: 24px;
@@ -14,33 +19,40 @@
   flex-direction: column;
   align-items: flex-end;
   gap: var(--space-3);
-  pointer-events: none;
 }
 
-/* The chat window */
+/* ── CHAT WINDOW ──────────────────────────── */
+/* display:none when closed = zero size, zero hit area */
 .chat-window {
+  display: none;
   width: 360px;
   height: 500px;
   background-color: var(--color-surface);
   border: 1px solid var(--color-border);
   border-radius: var(--radius-xl);
-  display: flex;
   flex-direction: column;
   overflow: hidden;
   box-shadow: var(--shadow-lg);
-  opacity: 0;
-  transform: translateY(20px) scale(0.95);
-  pointer-events: none;
-  transition: all var(--ease-normal);
 }
 
+/* display:flex when open + slide up animation */
 .chat-window.open {
-  opacity: 1;
-  transform: translateY(0) scale(1);
-  pointer-events: all;
+  display: flex;
+  animation: chatOpen 0.25s ease forwards;
 }
 
-/* Chat header */
+@keyframes chatOpen {
+  from {
+    opacity: 0;
+    transform: translateY(12px) scale(0.97);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* ── CHAT HEADER ──────────────────────────── */
 .chat-header {
   background-color: var(--color-bg);
   border-bottom: 1px solid var(--color-border);
@@ -106,7 +118,7 @@
   color: var(--color-text-primary);
 }
 
-/* Messages area */
+/* ── MESSAGES AREA ────────────────────────── */
 .chat-messages {
   flex: 1;
   overflow-y: auto;
@@ -117,7 +129,6 @@
   scroll-behavior: smooth;
 }
 
-/* Scrollbar styling */
 .chat-messages::-webkit-scrollbar {
   width: 4px;
 }
@@ -129,7 +140,7 @@
   border-radius: 4px;
 }
 
-/* Individual message bubbles */
+/* ── MESSAGE BUBBLES ──────────────────────── */
 .chat-message {
   display: flex;
   flex-direction: column;
@@ -137,13 +148,8 @@
   max-width: 85%;
 }
 
-.chat-message--bot {
-  align-self: flex-start;
-}
-
-.chat-message--user {
-  align-self: flex-end;
-}
+.chat-message--bot  { align-self: flex-start; }
+.chat-message--user { align-self: flex-end; }
 
 .chat-bubble {
   padding: var(--space-3) var(--space-4);
@@ -165,7 +171,7 @@
   font-weight: var(--weight-medium);
 }
 
-/* Typing indicator */
+/* ── TYPING INDICATOR ─────────────────────── */
 .chat-typing {
   display: flex;
   align-items: center;
@@ -190,10 +196,10 @@
 
 @keyframes typingBounce {
   0%, 60%, 100% { transform: translateY(0); opacity: 0.4; }
-  30% { transform: translateY(-6px); opacity: 1; }
+  30%            { transform: translateY(-6px); opacity: 1; }
 }
 
-/* Quick reply suggestion buttons */
+/* ── SUGGESTIONS ──────────────────────────── */
 .chat-suggestions {
   display: flex;
   flex-wrap: wrap;
@@ -219,7 +225,7 @@
   color: var(--color-gold);
 }
 
-/* Input area */
+/* ── INPUT AREA ───────────────────────────── */
 .chat-input-area {
   border-top: 1px solid var(--color-border);
   padding: var(--space-4);
@@ -254,7 +260,7 @@
   color: var(--color-text-muted);
 }
 
-/* Send button */
+/* ── SEND BUTTON ──────────────────────────── */
 .chat-send {
   width: 36px;
   height: 36px;
@@ -282,7 +288,7 @@
   transform: none;
 }
 
-/* The floating chat button */
+/* ── TOGGLE BUTTON ────────────────────────── */
 .chat-toggle {
   width: 56px;
   height: 56px;
@@ -305,7 +311,7 @@
   box-shadow: 0 8px 32px rgba(201, 168, 76, 0.4);
 }
 
-/* Notification dot */
+/* ── NOTIFICATION DOT ─────────────────────── */
 .chat-toggle-dot {
   position: absolute;
   top: 2px;
@@ -320,21 +326,18 @@
 
 @keyframes pulse {
   0%, 100% { transform: scale(1); }
-  50% { transform: scale(1.2); }
+  50%       { transform: scale(1.2); }
 }
 
-/* Mobile adjustments */
+/* ── MOBILE ───────────────────────────────── */
 @media (max-width: 480px) {
-  .chat-window {
-    width: calc(100vw - 32px);
-    height: 420px;
-    bottom: 80px;
-    right: 16px;
-    position: fixed;
-  }
-
   .chat-widget {
     bottom: 80px;
     right: 16px;
+  }
+
+  .chat-window {
+    width: calc(100vw - 32px);
+    height: 420px;
   }
 }
