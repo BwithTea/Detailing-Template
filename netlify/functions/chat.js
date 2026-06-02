@@ -1,95 +1,108 @@
-// ============================================
-//   NETLIFY FUNCTION: chat.js
-//   This is the secure server that sits between
-//   your frontend and the Claude API.
-//   The API key never touches the browser.
-// ============================================
+const https = require('https');
 
 exports.handler = async function(event, context) {
 
-  // Only allow POST requests
   if (event.httpMethod !== 'POST') {
     return { statusCode: 405, body: 'Method not allowed' };
   }
 
-  // Parse the message from the frontend
   const { messages } = JSON.parse(event.body);
 
-  // The system prompt — this is what makes Claude
-  // act as a specific detailing shop's assistant.
-  // When you build for a real client, customize
-  // everything between the backticks.
-  const systemPrompt = `You are an AI assistant for Luxe Detail, a premium auto detailing shop. You are friendly, professional, and knowledgeable. Your job is to answer customer questions and guide them toward booking a service.
+  const systemPrompt = `You are an AI assistant for Luxe Detail, a premium auto detailing shop. You are friendly, professional, and knowledgeable. Your goal is to answer questions and guide visitors toward booking.
 
 ABOUT THE BUSINESS:
 - Name: Luxe Detail
-- Location: [City, State]
 - Phone: (555) 000-0000
 - Email: hello@luxedetail.com
-- Hours: Monday–Saturday 8am–6pm
+- Hours: Monday-Saturday 8am-6pm
 - Satisfaction guarantee on every service
+- Mobile detailing available
 
 SERVICES & PRICING:
-- Express Detail: $89 — hand wash, vacuum, windows, tire shine (1.5 hrs)
-- Exterior Detail: $149 — full wash, clay bar, tire dressing (2-3 hrs)
-- Interior Detail: $179 — deep vacuum, steam clean, leather conditioning (2-3 hrs)
-- Full Detail: $299 — complete interior + exterior (4-5 hrs)
-- Paint Correction: $499 — removes swirls, scratches, oxidation (6-8 hrs)
-- Ceramic Coating: $799 — long-term paint protection, lasts years (1-2 days)
-- Headlight Restoration: $89 — restores clarity and visibility (1 hr)
+- Express Detail: $89 (1.5 hrs) — hand wash, vacuum, windows, tire shine
+- Exterior Detail: $149 (2-3 hrs) — full wash, clay bar, tire dressing
+- Interior Detail: $179 (2-3 hrs) — deep vacuum, steam clean, leather conditioning
+- Full Detail: $299 (4-5 hrs) — complete interior + exterior
+- Paint Correction: $499 (6-8 hrs) — removes swirls, scratches, oxidation
+- Ceramic Coating: $799 (1-2 days) — long term paint protection
+- Headlight Restoration: $89 (1 hr) — restores clarity
 
-BOOKING:
-- Customers can book online using the booking form on the website
-- Same-day bookings available based on availability
-- Confirmation within 2 hours of submitting the form
-- Mobile detailing available — we come to you
+BOOKING FLOW — CRITICAL INSTRUCTIONS:
+When a visitor wants to book or shows clear interest in booking, collect these details one at a time in natural conversation:
+1. First ask for their FULL NAME
+2. Then PHONE NUMBER
+3. Then EMAIL ADDRESS
+4. Then VEHICLE (year, make, model)
+5. Then which SERVICE they want
+6. Then PREFERRED DATE
 
-YOUR PERSONALITY:
+Ask for one piece of info at a time. Be conversational, not robotic.
+
+Once you have ALL SIX pieces of information, respond with a confirmation message to the visitor AND include this exact block at the very end of your response on its own line:
+
+BOOKING_READY:{"name":"[name]","phone":"[phone]","email":"[email]","vehicle":"[vehicle]","service":"[service]","date":"[date]"}
+
+Replace the values in brackets with the actual collected information. This triggers the booking submission automatically.
+
+PERSONALITY:
 - Friendly and conversational but professional
-- Always helpful — never say "I don't know", instead offer to connect them with the team
-- Keep responses concise — 2-3 sentences max unless they ask for detail
-- Always end with a soft push toward booking when relevant
+- Keep responses to 2-3 sentences max unless detail is needed
 - Never make up information not listed above
-- If asked something outside your knowledge say: "Great question — reach out to us directly at (555) 000-0000 and we'll get you sorted."
+- If asked something you don't know say: "Great question — reach out to us at (555) 000-0000 and we'll get you sorted"
+- Always end with a soft push toward booking when relevant`;
 
-GOAL:
-Your primary goal is to answer questions accurately and naturally guide the conversation toward a booking. When someone seems interested, suggest they use the booking form or call directly.`;
+  const requestBody = JSON.stringify({
+    model: 'claude-haiku-4-5-20251001',
+    max_tokens: 400,
+    system: systemPrompt,
+    messages: messages
+  });
 
-  try {
-    // Call the Claude API
-    const response = await fetch('https://api.anthropic.com/v1/messages', {
+  return new Promise((resolve) => {
+    const options = {
+      hostname: 'api.anthropic.com',
+      path: '/v1/messages',
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
         'x-api-key': process.env.ANTHROPIC_API_KEY,
-        'anthropic-version': '2023-06-01'
-      },
-      body: JSON.stringify({
-        model: 'claude-haiku-4-5-20251001',
-        max_tokens: 300,
-        system: systemPrompt,
-        messages: messages
-      })
+        'anthropic-version': '2023-06-01',
+        'Content-Length': Buffer.byteLength(requestBody)
+      }
+    };
+
+    const req = https.request(options, (res) => {
+      let data = '';
+      res.on('data', chunk => data += chunk);
+      res.on('end', () => {
+        try {
+          const parsed = JSON.parse(data);
+          const message = parsed.content[0].text;
+          resolve({
+            statusCode: 200,
+            headers: {
+              'Access-Control-Allow-Origin': '*',
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ message })
+          });
+        } catch (e) {
+          resolve({
+            statusCode: 500,
+            body: JSON.stringify({ error: 'Parse error' })
+          });
+        }
+      });
     });
 
-    const data = await response.json();
+    req.on('error', (e) => {
+      resolve({
+        statusCode: 500,
+        body: JSON.stringify({ error: e.message })
+      });
+    });
 
-    // Return the response to the frontend
-    return {
-      statusCode: 200,
-      headers: {
-        'Access-Control-Allow-Origin': '*',
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-        message: data.content[0].text
-      })
-    };
-
-  } catch (error) {
-    return {
-      statusCode: 500,
-      body: JSON.stringify({ error: 'Something went wrong. Please try again.' })
-    };
-  }
+    req.write(requestBody);
+    req.end();
+  });
 };

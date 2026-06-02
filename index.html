@@ -1126,6 +1126,19 @@
 
 </div>
 
+<!-- Hidden form for Netlify to detect -->
+<!-- Never shown to visitors — only used by the AI chat -->
+<form name="ai-booking" netlify netlify-honeypot="bot-field" hidden>
+  <input type="hidden" name="form-name" value="ai-booking" />
+  <input type="text" name="name" />
+  <input type="text" name="phone" />
+  <input type="email" name="email" />
+  <input type="text" name="vehicle" />
+  <input type="text" name="service" />
+  <input type="text" name="date" />
+  <input type="text" name="source" />
+</form>
+
 <!-- Chat scripts -->
 <link rel="stylesheet" href="css/chat.css" />
 <script src="js/chat.js"></script>
