@@ -10,10 +10,10 @@ let isTyping = false;
 let bookingData = {};
 
 const SUGGESTIONS = [
+  "I want to book an appointment",
   "What services do you offer?",
   "How much is a full detail?",
   "Do you do ceramic coating?",
-  "I want to book an appointment"
 ];
 
 // ── Initialize ─────────────────────────────────────────────────────────────
@@ -91,7 +91,7 @@ function addMessage(text, role) {
   div.className = `chat-message chat-message--${role === 'user' ? 'user' : 'bot'}`;
   const bubble = document.createElement('div');
   bubble.className = 'chat-bubble';
-  bubble.textContent = text;
+  bubble.innerHTML = text.replace(/\n/g, '<br>');
   div.appendChild(bubble);
   messages.appendChild(div);
   messages.scrollTop = messages.scrollHeight;
